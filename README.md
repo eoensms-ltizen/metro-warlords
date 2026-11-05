@@ -37,3 +37,9 @@ v0.3은 새 저장 키를 사용하며 v0.2 저장 파일을 자동으로 승계
 ## 구현 범위 제한
 
 현재 전투는 자동 시뮬레이션입니다. 직접 지휘 전술 맵, 본격 외교, 복잡한 보급망과 AI 인재 관리는 아직 미구현입니다.
+
+## 웹에서 플레이
+
+GitHub Pages: https://eoensms-ltizen.github.io/metro-warlords/
+
+배포 설정: Settings → Pages → Build and deployment → GitHub Actions. `main`에 커밋이 추가되면 `.github/workflows/pages.yml`이 배포를 실행합니다.
