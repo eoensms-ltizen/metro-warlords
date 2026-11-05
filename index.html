@@ -81,7 +81,7 @@ function dispatchShipment(source,destination,officerId,troops,goods){
  const src=station(source),dst=station(destination),officer=state.officers[officerId],route=ownedRoute(source,destination),distance=route?.length-1||0,capacity=120+src.development*3,fee=10+distance*5;
  if(!route||src.owner!==0||dst.owner!==0||src.shipped||!officer||officer.busy||officer.inTransit||officer.faction!==0||officer.station!==source||!Number.isInteger(troops)||!Number.isInteger(goods)||troops<0||goods<0||troops+goods<=0||troops>src.troops-30||goods>src.stock||troops+goods/2>capacity||state.factions[0].money<fee)return null;
  const eta=shipmentEta(distance),shipment={id:state.nextShipmentId++,source,destination,route,officerId,troops,goods,remaining:eta,total:eta,status:'moving',departure:monthLabel(),arrival:monthLabel(eta)};
- src.troops-=troops;src.stock-=goods;src.shipped=true;officer.busy=true;officer.inTransit=true;state.factions[0].money-=fee;state.shipments.push(shipment);
+ src.troops-=troops;src.stock-=goods;src.shipped=true;officer.busy=true;officer.inTransit=true;officer.station=-1;state.factions[0].money-=fee;state.shipments.push(shipment);
  log(`🚚 ${officer.name} · ${src.name}역 → ${dst.name}역 출발 · 병력 ${troops}명 / 물자 ${goods} · ${eta}개월 후 도착 (${shipment.arrival})`);
  return shipment;
 }
